@@ -1,5 +1,6 @@
+package exemplo;
+
 public class Produto {
-    // fornecedor (objeto Fornecedor)
     private String nome;
     private double valor;
     private int quantia;

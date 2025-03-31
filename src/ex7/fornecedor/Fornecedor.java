@@ -1,3 +1,5 @@
+package ex7.fornecedor;
+
 public class Fornecedor {
     private String nome;
     private long cnpj;
@@ -23,4 +25,5 @@ public class Fornecedor {
     public void setCnpj(long cnpj) {
         this.cnpj = cnpj;
     }
+
 }
