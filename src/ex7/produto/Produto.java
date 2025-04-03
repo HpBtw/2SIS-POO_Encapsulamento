@@ -9,10 +9,20 @@ public class Produto {
     private int quantia;
     private Fornecedor fornecedor;
 
-    public Produto(String nome, double valor, int quantia) {
+    public Produto(String nome, double valor, int quantia, Fornecedor fornecedor) {
         this.nome = nome;
         this.valor = valor;
         this.quantia = quantia;
         this.fornecedor = fornecedor;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getValor() { return valor; }
+
+    public Fornecedor getFornecedor() { return fornecedor; }
+
+    public int getQuantia() { return quantia; }
 }

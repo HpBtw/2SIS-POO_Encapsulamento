@@ -32,7 +32,7 @@ public class Util {
                     pesquisarProduto();
                     break;
                 case 3:
-                    pesquisarFornecedor();
+                    pesquisar();
                     break;
                 case 4:
                     return; // o return sem nada simplesmente finalizará o método
@@ -51,19 +51,44 @@ public class Util {
         Fornecedor fornecedor = pesquisarFornecedor();
 
         if (fornecedor == null) {
-            cadastrarFornecedor();
+            fornecedor = cadastrarFornecedor();
         }
+
+        nome = showInputDialog("Digite o nome do produto");
+        valor = parseDouble(showInputDialog("Digite o valor do produto"));
+        quantia = parseInt(showInputDialog("Digite a quantia do produto no estoque"));
+        produto[indexProduto++] = new Produto(nome, valor, quantia, fornecedor);
     }
 
-    public void cadastrarFornecedor() {
+    public Fornecedor cadastrarFornecedor() {
         String nome = showInputDialog("Digite o nome do fornecedor");
         long cnpj = parseLong(showInputDialog("Digite o CNPJ do fornecedor a ser cadastrado"));
         fornecedor[indexFornecedor] = new Fornecedor(nome, cnpj);
-        indexFornecedor++;
+        return fornecedor[indexFornecedor++];
+    }
+
+    public void pesquisar() {
+        Fornecedor fornecedor = pesquisarFornecedor();
+
+        if(fornecedor != null) {
+            showMessageDialog(null, fornecedor.getCnpj() + "\n" + fornecedor.getNome());
+        }
     }
 
     public void pesquisarProduto() {
+        String aux = "Produto não encontrado.";
+        String nome = showInputDialog("Nome do produto:");
 
+        for (int i = 0; i < indexProduto; i++) {
+            if (produto[i].getNome().equalsIgnoreCase(nome)) {
+                aux = "\nNome do produto: " + nome;
+                aux += "\nValor do produto: " + produto[i].getValor();
+                aux += "\nQuantidade do produto em estoque: " + produto[i].getQuantia();
+                aux += "\nFornecedor: " + produto[i].getFornecedor().getNome();
+                break;
+            }
+        }
+        showMessageDialog(null, aux);
     }
 
     public Fornecedor pesquisarFornecedor() {
